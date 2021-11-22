@@ -1,5 +1,5 @@
-#### 更新了，注意升级！！更新到v3.8.2
- 支持fastjson<=1.2.24和1.2.33<=fatjson<=1.2.47的不出网检测方案！！！！其中有SpringEcho方案,TomcatEcho方案，有DelayTest方案。不出网利用链有3条:dbcp,ibatis和TemplatesImpl，其中TemplatesImpl几乎遇不到，但是也加着。正在研究一键写文件和内存马，后面更新可能会加入。
+#### 更新了，注意升级！！更新到v3.9
+ 支持fastjson<=1.2.24和1.2.33<=fatjson<=1.2.47的不出网检测方案！！！！其中有SpringEcho方案,TomcatEcho方案，有DelayTest方案。不出网利用链有3条:dbcp,ibatis和TemplatesImpl，其中TemplatesImpl几乎遇不到，但是也加着。加入回显的文件上传功能（文件大小<64KB），内存马未实现后续添加。新增操作界面和菜单send to fastjsonScan
 
 ## fastjsonScan
 fastjson漏洞burp插件，检测fastjson&lt;=1.2.47基于dnslog和fastjson 1.2.47 的不出网3种TomcatEcho,SpringEcho回显方案，使用ysoserial的tomcatEcho回显方案
@@ -29,6 +29,9 @@ fastjson漏洞burp插件，检测fastjson&lt;=1.2.47基于dnslog和fastjson 1.2.
 
 ![](%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210119112911.png)
 
+也可以在自定义界面看到
+![](微信截图_20210514155731.png)
+
 fastjson1.2.47回显存在的话，自动发到Repeater 回显结果，添加Testcmd头执行命令：
 
 ![](%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210118170804.png)
@@ -44,5 +47,8 @@ fastjson1.2.47回显存在的话，自动发到Repeater 回显结果，添加Tes
 自动检测后，发送到repeater种，修改header，加入Testcmd:命令
 ![](微信截图_20210430091909.png)
 
-#### 将要更新提示，后面打算加入内存马和webshell上传功能，还没实现，只弄了个界面：
-![](微信截图_20210430141513.png)
+#### 实现文件上传功能，可上传文件如下图所示，内存马没弄出来，所以是灰色的。由于javassist限制，文件上传大小不能超过64kB，后面再研究限制，除了上传webshell，也可以上传其他任意文件（不存在回显链的无法上传），点击url，右键，弹出文件上传界面：
+![](微信截图_20210512170701.png)
+
+#### 实现右键菜单一键send to FastScan扫描，只扫描post且类型为application/json的：
+![](微信截图_20210512165855.png)
